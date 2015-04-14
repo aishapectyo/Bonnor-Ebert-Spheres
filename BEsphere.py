@@ -52,35 +52,6 @@ def get_mass(rho_in, c_sound, zi_sq, psi_diff):
         m = m / 1000.0 #change to kg
         m_s = m / 1.98E30 #chanege to solar masses
         return m_s
-
-
-#----Functions-----#
-def get_ext_pressure(T, m_crit):
-        k = 1.38E-23
-        p = 79.4 * T**4 * k / m_crit**2 #in SI units.
-        p = p *10 #convert to bar.
-        return p
-
-def get_dmnless_mass(m_crit, p_out, c_sound):
-        G = 6.67E-11
-        p_out = p_out/10.0 #Pascals
-        c_sound = c_sound / 100.0 #SI units
-        m = (np.sqrt(p_out) * G**(1.5) * m_crit) / c_sound**4
-        return m
-
-def get_zi(m_dmnless,rho_out, rho_in, psi_diff):
-        con = rho_out / (4 * np.pi * rho_in)
-        zi_squared = m_dmnless / (con**(0.5) * psi_diff)
-        return zi_squared
-
-def get_mass(rho_in, c_sound, zi_sq, psi_diff):
-        G = 6.67E-8 #cgs units
-        con1 = 4 * np.pi * rho_in
-        con2 = c_sound**2 / (4 * np.pi * G *rho_in)
-        m = con1 * con2**(1.5) * zi_sq * psi_diff
-        m = m / 1000.0 #change to kg
-        m_s = m / 1.98E30 #chanege to solar masses
-        return m_s
         
 #----Constants----#
 mu = 1.5 #any value between 1-2
